@@ -40,7 +40,7 @@ def solve_part_1(demo:bool) -> str:
 	"""Do something here >>>"""
 
 	elf_calories = utils.read_file_into_list(fn, parse_line)
-	print(elf_calories)
+	# ~ print(elf_calories)
 
 	elves = map_to_elves(elf_calories)
 	# ~ print(elves)
@@ -61,12 +61,15 @@ def solve_part_2(demo:bool) -> str:
 	"""Do something here >>>"""
 
 	elf_calories = utils.read_file_into_list(fn, parse_line)
-	print(elf_calories)
+	# ~ print(elf_calories)
 
 	elves = map_to_elves(elf_calories)
 	# ~ print(elves)
 
-	answer = None
+	elves.sort(reverse=True)
+	# ~ print(elves,elves[:3])
+
+	answer = sum(elves[:3])
 
 	"""<<< Do something here"""
 	utils.print_answer(2, demo, answer)
@@ -77,9 +80,9 @@ def solve_part_2(demo:bool) -> str:
 """
 def main(args):
 
-	solve_part_1(0)
+	# ~ solve_part_1(0)
 
-	# ~ solve_part_2(1)
+	solve_part_2(0)
 
 	return 0
 
