@@ -9,6 +9,27 @@ import utils
 
 ISSUE=1
 
+def parse_line(line:str):
+	'''
+	returns int|None
+	'''
+	x = line.strip()
+	if x:
+		return int(x)
+	return None
+
+def map_to_elves(cal_none:list) -> list:
+	elves = []
+	elf_calorie = 0
+	for n in cal_none:
+		if n is None:
+			elves.append(elf_calorie);elf_calorie = 0;continue
+		elf_calorie+=n
+	if elf_calorie>0:
+		# do not forget last one...
+		elves.append(elf_calorie)
+	return elves
+
 """
 	SOLVE PART 1
 """
@@ -18,9 +39,13 @@ def solve_part_1(demo:bool) -> str:
 	print(fn)
 	"""Do something here >>>"""
 
-	print('Part 1 not solved yet')
+	elf_calories = utils.read_file_into_list(fn, parse_line)
+	print(elf_calories)
 
-	answer = None
+	elves = map_to_elves(elf_calories)
+	# ~ print(elves)
+
+	answer = max(elves)
 
 	"""<<< Do something here"""
 	utils.print_answer(1, demo, answer)
@@ -35,7 +60,11 @@ def solve_part_2(demo:bool) -> str:
 	print(fn)
 	"""Do something here >>>"""
 
-	print('Part 2 not solved yet')
+	elf_calories = utils.read_file_into_list(fn, parse_line)
+	print(elf_calories)
+
+	elves = map_to_elves(elf_calories)
+	# ~ print(elves)
 
 	answer = None
 
@@ -48,7 +77,7 @@ def solve_part_2(demo:bool) -> str:
 """
 def main(args):
 
-	solve_part_1(1)
+	solve_part_1(0)
 
 	# ~ solve_part_2(1)
 
