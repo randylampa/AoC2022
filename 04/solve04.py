@@ -36,6 +36,15 @@ def solve_part_1(demo:bool) -> str:
 	utils.print_answer(1, demo, answer)
 	return answer
 
+def section_do_overlap(sec1_bnd:tuple, sec2_bnd:tuple) -> bool:
+	# retrun overlapping part boundaries (or none)
+	# ~ print([sec1_bnd, sec2_bnd])
+	if sec1_bnd[0]>sec2_bnd[1] or sec2_bnd[0]>sec1_bnd[1]:
+		# disjunkt
+		# ~ print([sec1_bnd, sec2_bnd, 'are disjunct'])
+		return False
+	return True
+
 """
 	SOLVE PART 2
 """
@@ -45,9 +54,16 @@ def solve_part_2(demo:bool) -> str:
 	print(fn)
 	"""Do something here >>>"""
 
-	print('Part 2 not solved yet')
+	# functional (good|mad)ness
+	pairs = utils.read_file_into_list(fn, lambda line: tuple(map(lambda x: tuple(map(int, x.split('-'))), line.strip().split(','))))
+	# ~ print(pairs)
 
-	answer = None
+	overlap_count = 0
+	for pair in pairs:
+		if section_do_overlap(pair[0], pair[1]):
+			overlap_count += 1
+
+	answer = overlap_count
 
 	"""<<< Do something here"""
 	utils.print_answer(2, demo, answer)
@@ -58,9 +74,9 @@ def solve_part_2(demo:bool) -> str:
 """
 def main(args):
 
-	solve_part_1(0)
+	# ~ solve_part_1(0)
 
-	# ~ solve_part_2(1)
+	solve_part_2(0)
 
 	return 0
 
