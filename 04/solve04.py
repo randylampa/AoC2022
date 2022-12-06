@@ -18,9 +18,19 @@ def solve_part_1(demo:bool) -> str:
 	print(fn)
 	"""Do something here >>>"""
 
-	print('Part 1 not solved yet')
+	# functional (good|mad)ness
+	pairs = utils.read_file_into_list(fn, lambda line: tuple(map(lambda x: tuple(map(int, x.split('-'))), line.strip().split(','))))
+	# ~ print(pairs)
 
-	answer = None
+	overlap_count = 0
+	for pair in pairs:
+		elf1 = pair[0]
+		elf2 = pair[1]
+		if elf1[0]<=elf2[0] and elf1[1]>=elf2[1] or elf2[0]<=elf1[0] and elf2[1]>=elf1[1]:
+			# elf1 contains elf2 OR elf2 contains elf1
+			overlap_count += 1
+
+	answer = overlap_count
 
 	"""<<< Do something here"""
 	utils.print_answer(1, demo, answer)
@@ -48,9 +58,9 @@ def solve_part_2(demo:bool) -> str:
 """
 def main(args):
 
-	solve_part_1(1)
+	solve_part_1(0)
 
-	solve_part_2(1)
+	# ~ solve_part_2(1)
 
 	return 0
 
